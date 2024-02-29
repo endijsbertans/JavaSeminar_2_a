@@ -1,6 +1,7 @@
 package model;
 
 public class Professor {
+	private static long idC = 13212;
     private long p_ID;
     private String name;
     private String surname;
@@ -15,13 +16,15 @@ public class Professor {
     }
 
     public Professor() {
-        this.p_ID = 0;
+    	
+    	setPid();
         this.name = "Name Required";
         this.surname = "Surname Required";
         this.degree = Degree.bsc;
     }
-    public Professor(long p_ID, String name, String surname, Degree degree) {
-        setPid(p_ID);
+    public Professor(String name, String surname, Degree degree) {
+ 
+        setPid();
         setName(name);
         setSurname(surname);
         setDegree(degree);
@@ -40,8 +43,9 @@ public class Professor {
         return name;
     }
     
-    public void setPid(long ID) {
-        this.p_ID = p_ID;
+    public void setPid() {
+       	idC++;
+        this.p_ID = idC;
     }
     public void setName(String name) {
         if (checkForSpecChar(name)) return;

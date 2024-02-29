@@ -8,19 +8,18 @@ public class Course {
     private Professor professor;
     
     public Course() {
-        idCounter++;
-        this.c_ID = idCounter;
+    	setC_ID();
         this.title = "Title Required";
         this.creditPoints = 1;
         this.professor = new Professor();
     }
 
     public Course(String title, int creditPoints, Professor professor) {
-        idCounter++;
-        this.c_ID = idCounter;
-        this.title = title;
-        this.creditPoints = creditPoints;
-        this.professor = professor;
+
+        setC_ID();
+        setTitle(title);
+        setCreditPoints(creditPoints);
+        setProfessor(professor);
     }
 
 
@@ -36,9 +35,9 @@ public class Course {
         return c_ID;
     }
 
-    public void setC_ID(long c_ID) {
+    public void setC_ID() {
         idCounter++;
-        this.c_ID = c_ID;
+        this.c_ID = idCounter;
     }
 
     public String getTitle() {
