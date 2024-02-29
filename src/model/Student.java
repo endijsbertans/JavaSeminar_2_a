@@ -4,6 +4,7 @@ public class Student {
     private long st_ID;
     private String name;
     private String surname;
+    private static long counter = 10000;
     public boolean checkForSpecChar(String s){
         for (int i = 0; i < s.length(); i++) {
             if (!Character.isDigit(s.charAt(i)) && !Character.isLetter(s.charAt(i)) && !Character.isWhitespace(s.charAt(i))) {
@@ -13,24 +14,25 @@ public class Student {
         return false;
     }
 
-    public Student(long st_ID, String name, String surname) {
-        this.st_ID = st_ID;
-        this.name = name;
-        this.surname = surname;
-    }
+
     public Student() {
         this.st_ID = 0;
         this.name = "Name Required";
         this.surname = "Surname Required";
     }
 
+    public Student(long st_ID, String name, String surname) {
+    	setSt_ID(st_ID);
+        setName(name);
+        setSurname(surname);
+    }
     public long getSt_ID() {
         return st_ID;
     }
 
-//    public void setSt_ID(long st_ID) {
-//        this.st_ID = st_ID;
-//    }
+    public void setSt_ID(long st_ID) {
+        this.st_ID = st_ID;
+    }
 
     public String getName() {
         return name;

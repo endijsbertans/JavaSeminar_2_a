@@ -6,26 +6,20 @@ public class Grade {
     private Student student;
     private Course course;
 
-    public Grade(long g_ID, int value, Student student, Course course) {
-        this.g_ID = g_ID;
+    public Grade(int value, Student student, Course course) {
+
         this.value = value;
         this.student = student;
         this.course = course;
     }
     public Grade() {
-        this.g_ID = 0;
+
         this.value = 0;
         this.student = new Student();
         this.course = new Course();
     }
 
-    public long getG_ID() {
-        return g_ID;
-    }
 
-//    public void setG_ID(long g_ID) {
-//        this.g_ID = g_ID;
-//    }
 
     public int getValue() {
         return value;
