@@ -58,7 +58,10 @@ public class Professor {
     }
 
     public void setDegree(Degree degree) {
-        this.degree = degree;
+    	if(degree != null)
+    		this.degree = degree;
+    	else 
+    		this.degree = Degree.other;
     }
 
     @Override
