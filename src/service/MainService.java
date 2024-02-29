@@ -54,12 +54,17 @@ public class MainService {
 		System.out.println();
 		
 		try {
-			calcAvgGrade(stud1);
+
+			for(Student stud : allStudents) {
+				System.out.println(calcAvgGrade(stud));
+				System.out.println(calcWeightedAvg(stud));
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}	
+	}
+	
 	public static float calcAvgGrade(Student student) throws Exception {
 		if(student == null) throw new Exception("Input student has a problem");
 		float sum = 0;
@@ -70,6 +75,20 @@ public class MainService {
 				sum += temp.getValue();
 				howMany++;
 			}
+		}
+		return sum/howMany;
+	}
+	public static float calcWeightedAvg(Student student) throws Exception {
+		if(student == null) throw new Exception("Input student has a problem");
+		float sum = 0;
+		int howMany = 0;
+		for(Grade temp : allGrades) {
+			if(temp.getStudent().equals(student)) {
+				sum += temp.getValue() * temp.getCourse().getCreditPoints();
+				howMany += temp.getCourse().getCreditPoints();
+				
+			}
+			
 		}
 		return sum/howMany;
 	}
