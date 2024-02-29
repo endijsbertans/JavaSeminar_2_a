@@ -14,18 +14,19 @@ public class Professor {
         return false;
     }
 
-    public Professor(long p_ID, String name, String surname, Degree degree) {
-        this.p_ID = p_ID;
-        this.name = name;
-        this.surname = surname;
-        this.degree = degree;
-    }
     public Professor() {
         this.p_ID = 0;
         this.name = "Name Required";
         this.surname = "Surname Required";
         this.degree = Degree.bsc;
     }
+    public Professor(long p_ID, String name, String surname, Degree degree) {
+        setPid(p_ID);
+        setName(name);
+        setSurname(surname);
+        setDegree(degree);
+    }
+
 
     public long getP_ID() {
         return p_ID;
@@ -38,7 +39,10 @@ public class Professor {
     public String getName() {
         return name;
     }
-
+    
+    public void setPid(long ID) {
+        this.p_ID = p_ID;
+    }
     public void setName(String name) {
         if (checkForSpecChar(name)) return;
         this.name = name;
