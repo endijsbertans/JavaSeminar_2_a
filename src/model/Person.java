@@ -1,6 +1,6 @@
 package model;
 
-public class Person {
+public abstract class Person {
     private String name;
     private String surname;
     public boolean checkForSpecChar(String s){
