@@ -58,7 +58,9 @@ public class MainService {
 			for(Student stud : allStudents) {
 				System.out.println(calcAvgGrade(stud));
 				System.out.println(calcWeightedAvg(stud));
+				
 			}
+			System.out.println(calcAvgGradeOfCourse(course1));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -90,6 +92,19 @@ public class MainService {
 			}
 			
 		}
+		return sum/howMany;
+	}
+	public static float calcAvgGradeOfCourse(Course course) throws Exception {
+		if(course == null) throw new Exception("Input course has a problem");
+		float sum = 0;
+		int howMany = 0;
+		for(Grade temp : allGrades) {
+			if(temp.getCourse().equals(course)) {
+				sum += temp.getValue();
+				howMany++;
+			}
+		}
+		if(howMany == 0)throw new Exception("No grades for course");
 		return sum/howMany;
 	}
 }
