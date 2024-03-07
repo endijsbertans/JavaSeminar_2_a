@@ -1,65 +1,32 @@
 package model;
 
-public class Professor {
+public class Professor extends Person{
+	
 	private static long idC = 13212;
     private long p_ID;
-    private String name;
-    private String surname;
     private Degree degree;
-    public boolean checkForSpecChar(String s){
-        for (int i = 0; i < s.length(); i++) {
-            if (!Character.isDigit(s.charAt(i)) && !Character.isLetter(s.charAt(i)) && !Character.isWhitespace(s.charAt(i))) {
-                return true;
-            }
-        }
-        return false;
-    }
+    
 
     public Professor() {
-    	
+    	super(); // izsauc Person() konstruktoru
     	setPid();
-        this.name = "Name Required";
-        this.surname = "Surname Required";
         this.degree = Degree.bsc;
     }
     public Professor(String name, String surname, Degree degree) {
- 
+    	super(name, surname);
         setPid();
-        setName(name);
-        setSurname(surname);
         setDegree(degree);
     }
-
 
     public long getP_ID() {
         return p_ID;
     }
-
-//    public void setP_ID(long p_ID) {
-//        this.p_ID = p_ID;
-//    }
-
-    public String getName() {
-        return name;
-    }
-    
+  
     public void setPid() {
        	idC++;
         this.p_ID = idC;
     }
-    public void setName(String name) {
-        if (checkForSpecChar(name)) return;
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        if (checkForSpecChar(surname)) return;
-        this.surname = surname;
-    }
+    
 
     public Degree getDegree() {
         return degree;
@@ -76,8 +43,7 @@ public class Professor {
     public String toString() {
         return "Professor{" +
                 "p_ID=" + p_ID +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
+                ", name='" + super.toString() + '\'' +
                 ", degree='" + degree + '\'' +
                 '}';
     }
