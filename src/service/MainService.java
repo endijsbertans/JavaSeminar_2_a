@@ -161,10 +161,32 @@ public class MainService {
 		}
 		throw new Exception("Student By surname and name not Found!");
 	}
-	public static void sortStud() throws Exception{
-		if(allGrades == null) throw new Exception("No grades");
-		if(allStudents == null) throw new Exception("No grades");
-        
+	public static ArrayList<Student> sortStudentsByAvgGrade() throws Exception{
+		ArrayList<Student> result = new ArrayList<Student>();
+		for(Student student : allStudents) {
+			try {
+				calcAvgGrade(student);
+				result.add(student);
+			}catch(Exception e) {
+				System.out.println(e);
+			}
+		}
+		
+		for(int i = 0; i< result.size(); i++) {
+			try {
+			for(int j = 0; j < result.size(); j++) {
+				if(calcAvgGrade(result.get(i)) < calcAvgGrade(result.get(j))) {
+					Student temp = result.get(i);
+					result.set(i, result.get(j));
+					result.set(i, temp);
+				}
+			}
+			}catch(Exception e) {
+			System.out.println(e);
+			}
+		}
+		
+        return result;
 	}
 	
 	
