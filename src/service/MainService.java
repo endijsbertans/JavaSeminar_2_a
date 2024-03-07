@@ -123,7 +123,7 @@ public class MainService {
 		if(professor== null) throw new Exception("Input professor has a problem");
 		int count = 0;
 		for(Course temp : allCourses) {
-			if(temp.getProfessor().equals(professor)) {
+			if(temp.getProfessors().contains(professor)) {
 				count++;
 			}
 		}
