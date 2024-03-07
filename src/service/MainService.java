@@ -140,6 +140,27 @@ public class MainService {
 		}
 		throw new Exception("Student By surname not Found");
 	}
+	public static void updateStudentByNameAndSurname(String name, String surname, String newSurname) throws Exception{
+		if(name == null || surname == null) throw new Exception("Input name or surname has a problem!");
+		for(Student temp : allStudents) {
+			if(temp.getName().equals(name) && temp.getSurname().equals(surname) && !surname.equals(newSurname)) {
+				temp.setSurname(newSurname);
+				break;
+			}
+		}
+		throw new Exception("Student By surname and name not Found!");
+	}
+	
+	public static void deleteStudentByNameAndSurname(String name, String surname) throws Exception{
+		if(name == null || surname == null) throw new Exception("Input name or surname has a problem!");
+		for(Student temp : allStudents) {
+			if(temp.getName().equals(name) && temp.getSurname().equals(surname)) {
+				allStudents.remove(temp);
+					break;
+			}
+		}
+		throw new Exception("Student By surname and name not Found!");
+	}
 	public static void sortStud() throws Exception{
 		if(allGrades == null) throw new Exception("No grades");
 		if(allStudents == null) throw new Exception("No grades");
