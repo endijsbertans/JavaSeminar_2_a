@@ -34,7 +34,7 @@ public class Student {
 
     public void setSt_ID() {
     	idCount++;
-        this.st_ID = st_ID;
+        this.st_ID = idCount;
     }
 
     public String getName() {

@@ -45,8 +45,8 @@ public class MainService {
 		}
 		System.out.println();
 		
-		Grade grade1 = new Grade(10, stud1, course1);		
-		Grade grade2 = new Grade(3, stud2, course2);
+		Grade grade1 = new Grade(7, stud1, course1);		
+		Grade grade2 = new Grade(10, stud2, course2);
 		allGrades.add(grade1);
 		allGrades.add(grade2);
 		for(Grade temp : allGrades) {
@@ -57,12 +57,18 @@ public class MainService {
 		try {
 
 			for(Student stud : allStudents) {
-				System.out.println(calcAvgGrade(stud));
-				System.out.println(calcWeightedAvg(stud));
+				System.out.println(stud);
+				System.out.println(stud);
 				
 			}
 			System.out.println(calcAvgGradeOfCourse(course1));
 			System.out.println(calcCoursesForProfessor(prof1));
+			sortStudentsByAvgGrade();
+			for(Student stud : allStudents) {
+				System.out.println(stud);
+				System.out.println(stud);
+				
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
