@@ -1,25 +1,28 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Course {
     private static long idCounter = 100000;
     private long c_ID;
     private String title;
     private int creditPoints;
-    private Professor professor;
+    private ArrayList<Professor> professors = new ArrayList<Professor>();
     
     public Course() {
     	setC_ID();
         this.title = "Title Required";
         this.creditPoints = 1;
-        this.professor = new Professor();
+        setProfessors(professors);
     }
 
-    public Course(String title, int creditPoints, Professor professor) {
+    public Course(String title, int creditPoints, ArrayList<Professor> professors) {
 
         setC_ID();
         setTitle(title);
         setCreditPoints(creditPoints);
-        setProfessor(professor);
+        setProfessors(professors);
     }
 
 
@@ -58,21 +61,35 @@ public class Course {
         this.creditPoints = creditPoints;
     }
 
-    public Professor getProfessor() {
-        return professor;
+    public ArrayList<Professor> getProfessor() {
+        return professors;
     }
 
-    public void setProfessor(Professor professor) {
-        this.professor = professor;
+    public void setProfessors(ArrayList<Professor> professors) {
+    	if(professors != null) 
+    		this.professors = professors;
+    	else
+    		this.professors = new ArrayList<Professor>(Arrays.asList(new Professor()));
     }
-
+  
     @Override
     public String toString() {
         return "Course{" +
                 "c_ID=" + c_ID +
                 ", title='" + title + '\'' +
                 ", creditPoints=" + creditPoints +
-                ", professor=" + professor +
+                ", professor=" + professors +
                 '}';
+    }
+    // other func
+    public void addProfessor(Professor professor) {
+    	if(!professors.contains(professor)){
+    		professors.add(professor);
+    	}
+    }
+    public void removeProfessor(Professor professor) {
+    	if(professors.contains(professor)){
+    		professors.remove(professor);
+    	}
     }
 }

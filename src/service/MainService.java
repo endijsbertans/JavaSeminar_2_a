@@ -4,6 +4,7 @@ import model.Professor;
 import model.Student;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import model.Course;
 import model.Grade;
@@ -35,11 +36,14 @@ public class MainService {
 		}
 		System.out.println();
 		
-		Course course1 = new Course("OOP", 4, prof1);
-		Course course2 = new Course("Diskreta mat.", 2, prof1);
-		Course course3 = new Course("Mat Analize", 4, prof2);
+		Course course1 = new Course("OOP", 4, new ArrayList<Professor>(Arrays.asList(prof1)));
+		Course course2 = new Course("Diskreta mat.", 2, new ArrayList<Professor>(Arrays.asList(prof1)));
+		Course course3 = new Course("Mat Analize", 4, new ArrayList<Professor>(Arrays.asList(prof2)));
+		Course course4 = new Course("Datorsist. arhitektura", 4, new ArrayList<Professor>(Arrays.asList(prof2, prof1)));
 		allCourses.add(course1);
 		allCourses.add(course2);
+		allCourses.add(course3);
+		allCourses.add(course4);
 		for(Course temp : allCourses) {
 			System.out.println(temp);
 		}
