@@ -1,5 +1,6 @@
 package service;
 import model.Degree;
+import model.Person;
 import model.Professor;
 import model.Student;
 
@@ -10,8 +11,7 @@ import model.Course;
 import model.Grade;
 public class MainService {
 
-	private static ArrayList<Professor> allProfessors = new ArrayList<Professor>();
-	private static ArrayList<Student> allStudents = new ArrayList<Student>();
+	private static ArrayList<Person> allPersons = new ArrayList<Person>();
 	private static ArrayList<Course> allCourses = new ArrayList<Course>();
 	private static ArrayList<Grade> allGrades = new ArrayList<Grade>();
 	
@@ -20,18 +20,18 @@ public class MainService {
 		
 		Professor prof1 = new Professor("Endijs", "Bertans", Degree.other);
 		Professor prof2 = new Professor("Daniels", "Kalnavs", Degree.phd);
-		allProfessors.add(prof1);
-		allProfessors.add(prof2);
-		for(Professor temp : allProfessors) {
+		allPersons.add(prof1);
+		allPersons.add(prof2);
+		for(Person temp : allPersons) {
 			System.out.println(temp);
 		}
 		System.out.println();
 		
 		Student stud1 = new Student("Jekabs", "Berzins");
 		Student stud2 = new Student("Janis", "Baltais");
-		allStudents.add(stud1);
-		allStudents.add(stud2);
-		for(Student temp : allStudents) {
+		allPersons.add(stud1);
+		allPersons.add(stud2);
+		for(Person temp : allPersons) {
 			System.out.println(temp);
 		}
 		System.out.println();
@@ -60,19 +60,16 @@ public class MainService {
 		
 		try {
 
-			for(Student stud : allStudents) {
+			for(Person stud : allPersons) {
+				if(stud instanceof Student) {
 				System.out.println(stud);
 				System.out.println(stud);
-				
+				}
 			}
 			System.out.println(calcAvgGradeOfCourse(course1));
 			System.out.println(calcCoursesForProfessor(prof1));
 			sortStudentsByAvgGrade();
-			for(Student stud : allStudents) {
-				System.out.println(stud);
-				System.out.println(stud);
-				
-			}
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -133,27 +130,27 @@ public class MainService {
 	// TODO add person code as necessary input
 	public static void createStudent(String name, String surname) throws Exception {
 		if(name == null || surname == null) throw new Exception("Input name or surname has a problem!");
-		for(Student temp : allStudents) {
-			if(temp.getName().equals(name) && temp.getSurname().equals(surname)) {
+		for(Person temp : allPersons) {
+			if(temp.getName().equals(name) && temp.getSurname().equals(surname) && temp instanceof Student) {
 				throw new Exception("Student with that name and surname already exists!");
 			}
 		}
 		Student st = new Student(name, surname);
-		allStudents.add(st);
+		allPersons.add(st);
 	}
 	// retrieve by surname
 	//TODO retrieve by personCode
 	public static Student retrieveStudentBySurname(String surname) throws Exception {
 		if(surname == null) throw new Exception("Input name or surname has a problem!");
-		for(Student temp : allStudents) {
-			if(temp.getSurname().equals(surname)) return temp;
+		for(Person temp : allPersons) {
+			if(temp.getSurname().equals(surname) && temp instanceof Student) return (Student)temp;
 		}
 		throw new Exception("Student By surname not Found");
 	}
 	public static void updateStudentByNameAndSurname(String name, String surname, String newSurname) throws Exception{
 		if(name == null || surname == null) throw new Exception("Input name or surname has a problem!");
-		for(Student temp : allStudents) {
-			if(temp.getName().equals(name) && temp.getSurname().equals(surname) && !surname.equals(newSurname)) {
+		for(Person temp : allPersons) {
+			if(temp.getName().equals(name) && temp.getSurname().equals(surname) && !surname.equals(newSurname) && temp instanceof Student) {
 				temp.setSurname(newSurname);
 				break;
 			}
@@ -163,9 +160,9 @@ public class MainService {
 	
 	public static void deleteStudentByNameAndSurname(String name, String surname) throws Exception{
 		if(name == null || surname == null) throw new Exception("Input name or surname has a problem!");
-		for(Student temp : allStudents) {
-			if(temp.getName().equals(name) && temp.getSurname().equals(surname)) {
-				allStudents.remove(temp);
+		for(Person temp : allPersons) {
+			if(temp.getName().equals(name) && temp.getSurname().equals(surname)&& temp instanceof Student) {
+				allPersons.remove(temp);
 					break;
 			}
 		}
@@ -173,12 +170,16 @@ public class MainService {
 	}
 	public static ArrayList<Student> sortStudentsByAvgGrade() throws Exception{
 		ArrayList<Student> result = new ArrayList<Student>();
-		for(Student student : allStudents) {
-			try {
-				calcAvgGrade(student);
-				result.add(student);
-			}catch(Exception e) {
-				System.out.println(e);
+		for(Person student : allPersons) {
+			if(student instanceof Student) {
+				try {
+					
+					calcAvgGrade((Student)student);
+					result.add((Student)student);
+			
+				}catch(Exception e) {
+					System.out.println(e);
+				}
 			}
 		}
 		

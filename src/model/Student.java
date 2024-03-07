@@ -1,11 +1,10 @@
 package model;
 
 public class Student extends Person{
+	
 	private static long idCount = 1000;
     private long st_ID;
-
     private static long counter = 10000;
-
 
     public Student() {
     	super();

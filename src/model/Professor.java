@@ -1,7 +1,7 @@
 package model;
 
 public class Professor extends Person{
-	
+
 	private static long idC = 13212;
     private long p_ID;
     private Degree degree;
