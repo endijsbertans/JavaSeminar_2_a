@@ -36,7 +36,8 @@ public class MainService {
 		System.out.println();
 		
 		Course course1 = new Course("OOP", 4, prof1);
-		Course course2 = new Course("Mat Analize", 4, prof2);
+		Course course2 = new Course("Diskreta mat.", 2, prof1);
+		Course course3 = new Course("Mat Analize", 4, prof2);
 		allCourses.add(course1);
 		allCourses.add(course2);
 		for(Course temp : allCourses) {
@@ -61,6 +62,7 @@ public class MainService {
 				
 			}
 			System.out.println(calcAvgGradeOfCourse(course1));
+			System.out.println(calcCoursesForProfessor(prof1));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -107,4 +109,34 @@ public class MainService {
 		if(howMany == 0)throw new Exception("No grades for course");
 		return sum/howMany;
 	}
+	public static int calcCoursesForProfessor(Professor professor) throws Exception {
+		if(professor== null) throw new Exception("Input professor has a problem");
+		int count = 0;
+		for(Course temp : allCourses) {
+			if(temp.getProfessor().equals(professor)) {
+				count++;
+			}
+		}
+		if(count == 0)throw new Exception("No courses for professor");
+		return count;
+	}
+	// TODO add person code as necessary input
+	public static void createStudent(String name, String surname) throws Exception {
+		if(name == null || surname == null) throw new Exception("Input name or surname has a problem!");
+		for(Student temp : allStudents) {
+			if(temp.getName().equals(name) && temp.getSurname().equals(surname)) {
+				throw new Exception("Student with that name an surname already exists!");
+			}
+		}
+		Student st = new Student(name, surname);
+		allStudents.add(st);
+	}
+	public static void sortStud() throws Exception{
+		if(allGrades == null) throw new Exception("No grades");
+		if(allStudents == null) throw new Exception("No grades");
+        
+		
+	}
+	
+	
 }
