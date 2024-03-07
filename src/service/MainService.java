@@ -125,17 +125,25 @@ public class MainService {
 		if(name == null || surname == null) throw new Exception("Input name or surname has a problem!");
 		for(Student temp : allStudents) {
 			if(temp.getName().equals(name) && temp.getSurname().equals(surname)) {
-				throw new Exception("Student with that name an surname already exists!");
+				throw new Exception("Student with that name and surname already exists!");
 			}
 		}
 		Student st = new Student(name, surname);
 		allStudents.add(st);
 	}
+	// retrieve by surname
+	//TODO retrieve by personCode
+	public static Student retrieveStudentBySurname(String surname) throws Exception {
+		if(surname == null) throw new Exception("Input name or surname has a problem!");
+		for(Student temp : allStudents) {
+			if(temp.getSurname().equals(surname)) return temp;
+		}
+		throw new Exception("Student By surname not Found");
+	}
 	public static void sortStud() throws Exception{
 		if(allGrades == null) throw new Exception("No grades");
 		if(allStudents == null) throw new Exception("No grades");
         
-		
 	}
 	
 	
